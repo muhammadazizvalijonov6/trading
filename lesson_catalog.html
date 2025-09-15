@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson Catalog - TradingVideoAcademy</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Ftradingvid2615back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-sm border-b border-gray-200">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="lesson_catalog.html" class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold text-primary">TradingVideoAcademy</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="lesson_catalog.html" class="text-primary font-medium">Lessons</a>
+                    <a href="user_dashboard.html" class="text-secondary-600 hover:text-primary transition-colors">Dashboard</a>
+                    <a href="user_login.html" class="text-secondary-600 hover:text-primary transition-colors">Sign In</a>
+                    <a href="user_registration.html" class="btn-primary text-sm px-4 py-2">Get Started</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-secondary-600 hover:text-primary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 py-4">
+                <div class="space-y-2">
+                    <a href="lesson_catalog.html" class="block px-4 py-2 text-primary font-medium">Lessons</a>
+                    <a href="user_dashboard.html" class="block px-4 py-2 text-secondary-600 hover:text-primary">Dashboard</a>
+                    <a href="user_login.html" class="block px-4 py-2 text-secondary-600 hover:text-primary">Sign In</a>
+                    <a href="user_registration.html" class="block px-4 py-2 text-primary font-medium">Get Started</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-br from-primary-50 to-accent-50 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h1 class="text-4xl lg:text-5xl font-bold text-text-primary mb-4">
+                        Master Trading with 
+                        <span class="text-gradient">Expert Lessons</span>
+                    </h1>
+                    <p class="text-lg text-secondary-600 mb-8 max-w-3xl mx-auto">
+                        Start with 7 free lessons covering trading fundamentals, then unlock advanced strategies with our affordable premium bundles at just $5-6 per package.
+                    </p>
+                    
+                    <!-- Quick Stats -->
+                    <div class="flex flex-wrap justify-center gap-8 mb-8">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-primary">50+</div>
+                            <div class="text-sm text-secondary-600">Video Lessons</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-primary">7</div>
+                            <div class="text-sm text-secondary-600">Free Lessons</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-primary">$5-6</div>
+                            <div class="text-sm text-secondary-600">Per Bundle</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-primary">15K+</div>
+                            <div class="text-sm text-secondary-600">Students</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter and Search Section -->
+        <section class="py-8 bg-surface border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
+                    <!-- Search Bar -->
+                    <div class="relative flex-1 max-w-md">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                        <input type="text" id="searchInput" class="input-field pl-10" placeholder="Search lessons..." />
+                    </div>
+                    
+                    <!-- Filter Controls -->
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <!-- Difficulty Filter -->
+                        <div class="relative">
+                            <select id="difficultyFilter" class="input-field pr-10 min-w-32">
+                                <option value>All Levels</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Topic Filter -->
+                        <div class="relative">
+                            <select id="topicFilter" class="input-field pr-10 min-w-32">
+                                <option value>All Topics</option>
+                                <option value="basics">Trading Basics</option>
+                                <option value="technical">Technical Analysis</option>
+                                <option value="risk">Risk Management</option>
+                                <option value="psychology">Trading Psychology</option>
+                                <option value="strategies">Advanced Strategies</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Status Filter -->
+                        <div class="relative">
+                            <select id="statusFilter" class="input-field pr-10 min-w-32">
+                                <option value>All Lessons</option>
+                                <option value="free">Free Only</option>
+                                <option value="premium">Premium Only</option>
+                                <option value="completed">Completed</option>
+                                <option value="in-progress">In Progress</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Reset Filters -->
+                        <button id="resetFilters" class="btn-secondary text-sm px-4 py-2 flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                            <span>Reset</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Active Filters Display -->
+                <div id="activeFilters" class="mt-4 flex flex-wrap gap-2 hidden">
+                    <!-- Dynamic filter tags will be inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Lesson Catalog Grid -->
+        <section class="py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Results Header -->
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-text-primary">Available Lessons</h2>
+                        <p id="resultsCount" class="text-secondary-600 mt-1">Showing 50 lessons</p>
+                    </div>
+                    
+                    <!-- View Toggle -->
+                    <div class="hidden sm:flex items-center space-x-2 bg-secondary-100 rounded-lg p-1">
+                        <button id="gridView" class="p-2 rounded-md bg-white shadow-sm text-primary">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 3h7v7H3V3zm0 11h7v7H3v-7zm11-11h7v7h-7V3zm0 11h7v7h-7v-7z"/>
+                            </svg>
+                        </button>
+                        <button id="listView" class="p-2 rounded-md text-secondary-600 hover:text-primary">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson Cards Grid -->
+                <div id="lessonGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Free Lesson Cards (1-7) -->
+                    <div class="lesson-card card card-hover" data-lesson="1" data-difficulty="beginner" data-topic="basics" data-status="free">
+                        <div class="relative">
+                            <img src="https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Trading Fundamentals" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            
+                            <!-- Free Badge -->
+                            <div class="absolute top-3 left-3 bg-success-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                FREE
+                            </div>
+                            
+                            <!-- Duration -->
+                            <div class="absolute bottom-3 right-3 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-xs">
+                                12:45
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <h3 class="font-semibold text-text-primary mb-1">Lesson 1: Trading Fundamentals</h3>
+                                <p class="text-sm text-secondary-600">Learn the basic concepts of trading and market dynamics.</p>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs bg-secondary-100 text-secondary-700 px-2 py-1 rounded-full">Beginner</span>
+                                    <span class="text-xs text-secondary-500">12 min</span>
+                                </div>
+                            </div>
+                            
+                            <button class="btn-primary w-full text-sm py-2 flex items-center justify-center space-x-2" onclick="watchLesson(1)">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                <span>Watch Free</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card card-hover" data-lesson="2" data-difficulty="beginner" data-topic="basics" data-status="free">
+                        <div class="relative">
+                            <img src="https://images.pixabay.com/photo/2016/11/27/21/42/stock-1863880_960_720.jpg" alt="Market Analysis" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            
+                            <div class="absolute top-3 left-3 bg-success-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                FREE
+                            </div>
+                            
+                            <div class="absolute bottom-3 right-3 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-xs">
+                                15:30
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <h3 class="font-semibold text-text-primary mb-1">Lesson 2: Market Analysis Basics</h3>
+                                <p class="text-sm text-secondary-600">Understanding how to read and analyze market trends.</p>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs bg-secondary-100 text-secondary-700 px-2 py-1 rounded-full">Beginner</span>
+                                    <span class="text-xs text-secondary-500">15 min</span>
+                                </div>
+                            </div>
+                            
+                            <button class="btn-primary w-full text-sm py-2 flex items-center justify-center space-x-2" onclick="watchLesson(2)">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                <span>Watch Free</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card card-hover" data-lesson="3" data-difficulty="beginner" data-topic="basics" data-status="free">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&auto=format&fit=crop" alt="Risk Management" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            
+                            <div class="absolute top-3 left-3 bg-success-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                FREE
+                            </div>
+                            
+                            <div class="absolute bottom-3 right-3 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-xs">
+                                18:20
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <h3 class="font-semibold text-text-primary mb-1">Lesson 3: Risk Management</h3>
+                                <p class="text-sm text-secondary-600">Essential strategies to protect your trading capital.</p>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs bg-secondary-100 text-secondary-700 px-2 py-1 rounded-full">Beginner</span>
+                                    <span class="text-xs text-secondary-500">18 min</span>
+                                </div>
+                            </div>
+                            
+                            <button class="btn-primary w-full text-sm py-2 flex items-center justify-center space-x-2" onclick="watchLesson(3)">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                <span>Watch Free</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card card-hover" data-lesson="4" data-difficulty="beginner" data-topic="technical" data-status="free">
+                        <div class="relative">
+                            <img src="https://images.pexels.com/photos/7567486/pexels-photo-7567486.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Chart Reading" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            
+                            <div class="absolute top-3 left-3 bg-success-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                FREE
+                            </div>
+                            
+                            <div class="absolute bottom-3 right-3 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-xs">
+                                22:15
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <h3 class="font-semibold text-text-primary mb-1">Lesson 4: Chart Reading Basics</h3>
+                                <p class="text-sm text-secondary-600">Learn to read candlestick charts and price patterns.</p>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs bg-secondary-100 text-secondary-700 px-2 py-1 rounded-full">Beginner</span>
+                                    <span class="text-xs text-secondary-500">22 min</span>
+                                </div>
+                            </div>
+                            
+                            <button class="btn-primary w-full text-sm py-2 flex items-center justify-center space-x-2" onclick="watchLesson(4)">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                <span>Watch Free</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Premium Lesson Cards (8+) -->
+                    <div class="lesson-card card card-hover" data-lesson="8" data-difficulty="intermediate" data-topic="technical" data-status="premium">
+                        <div class="relative">
+                            <img src="https://images.pixabay.com/photo/2016/11/27/21/42/stock-1863880_960_720.jpg" alt="Advanced Technical Analysis" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            
+                            <!-- Premium Badge -->
+                            <div class="absolute top-3 left-3 premium-badge">
+                                PREMIUM
+                            </div>
+                            
+                            <div class="absolute bottom-3 right-3 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-xs">
+                                25:40
+                            </div>
+                            
+                            <!-- Preview Button -->
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200">
+                                <button class="bg-white bg-opacity-90 text-text-primary px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2" onclick="previewLesson(8)">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span>Preview</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <h3 class="font-semibold text-text-primary mb-1">Lesson 8: Advanced Technical Analysis</h3>
+                                <p class="text-sm text-secondary-600">Master complex indicators and trading signals.</p>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs bg-accent-100 text-accent-700 px-2 py-1 rounded-full">Intermediate</span>
+                                    <span class="text-xs text-secondary-500">25 min</span>
+                                </div>
+                                <div class="text-sm font-semibold text-primary">$5</div>
+                            </div>
+                            
+                            <!-- Bundle Info -->
+                            <div class="bg-accent-50 border border-accent-200 rounded-lg p-3">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-accent-700">Bundle: Lessons 8-9</span>
+                                    <span class="text-lg font-bold text-accent-700">$5</span>
+                                </div>
+                                <p class="text-xs text-accent-600 mb-3">Save $1 when you buy both lessons together</p>
+                                <button class="btn-accent w-full text-sm py-2" onclick="purchaseBundle('8-9', 5)">
+                                    Buy Bundle - $5
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card card-hover" data-lesson="10" data-difficulty="intermediate" data-topic="strategies" data-status="premium">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&auto=format&fit=crop" alt="Trading Strategies" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            
+                            <div class="absolute top-3 left-3 premium-badge">
+                                PREMIUM
+                            </div>
+                            
+                            <div class="absolute bottom-3 right-3 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-xs">
+                                28:15
+                            </div>
+                            
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200">
+                                <button class="bg-white bg-opacity-90 text-text-primary px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2" onclick="previewLesson(10)">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span>Preview</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <h3 class="font-semibold text-text-primary mb-1">Lesson 10: Swing Trading Strategies</h3>
+                                <p class="text-sm text-secondary-600">Learn profitable swing trading techniques and setups.</p>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs bg-accent-100 text-accent-700 px-2 py-1 rounded-full">Intermediate</span>
+                                    <span class="text-xs text-secondary-500">28 min</span>
+                                </div>
+                                <div class="text-sm font-semibold text-primary">$6</div>
+                            </div>
+                            
+                            <div class="bg-accent-50 border border-accent-200 rounded-lg p-3">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-accent-700">Bundle: Lessons 10-11</span>
+                                    <span class="text-lg font-bold text-accent-700">$6</span>
+                                </div>
+                                <p class="text-xs text-accent-600 mb-3">Advanced strategy bundle with bonus materials</p>
+                                <button class="btn-accent w-full text-sm py-2" onclick="purchaseBundle('10-11', 6)">
+                                    Buy Bundle - $6
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- More lesson cards would continue here... -->
+                    <div class="lesson-card card card-hover" data-lesson="12" data-difficulty="advanced" data-topic="psychology" data-status="premium">
+                        <div class="relative">
+                            <img src="https://images.pexels.com/photos/8370752/pexels-photo-8370752.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Trading Psychology" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            
+                            <div class="absolute top-3 left-3 premium-badge">
+                                PREMIUM
+                            </div>
+                            
+                            <div class="absolute bottom-3 right-3 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-xs">
+                                32:10
+                            </div>
+                            
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200">
+                                <button class="bg-white bg-opacity-90 text-text-primary px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2" onclick="previewLesson(12)">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span>Preview</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <h3 class="font-semibold text-text-primary mb-1">Lesson 12: Trading Psychology Mastery</h3>
+                                <p class="text-sm text-secondary-600">Control emotions and develop winning mindset.</p>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs bg-error-100 text-error-600 px-2 py-1 rounded-full">Advanced</span>
+                                    <span class="text-xs text-secondary-500">32 min</span>
+                                </div>
+                                <div class="text-sm font-semibold text-primary">$6</div>
+                            </div>
+                            
+                            <div class="bg-accent-50 border border-accent-200 rounded-lg p-3">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-accent-700">Bundle: Lessons 12-13</span>
+                                    <span class="text-lg font-bold text-accent-700">$6</span>
+                                </div>
+                                <p class="text-xs text-accent-600 mb-3">Psychology mastery with practical exercises</p>
+                                <button class="btn-accent w-full text-sm py-2" onclick="purchaseBundle('12-13', 6)">
+                                    Buy Bundle - $6
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-12">
+                    <button id="loadMoreBtn" class="btn-secondary px-8 py-3">
+                        Load More Lessons
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 bg-gradient-to-r from-primary to-primary-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold text-white mb-4">Ready to Start Learning?</h2>
+                <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+                    Join thousands of successful traders who started with our free lessons
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="user_registration.html" class="btn-accent px-8 py-3 text-lg">
+                        Start Free Lessons
+                    </a>
+                    <a href="user_dashboard.html" class="bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-primary-50 transition-colors">
+                        View Dashboard
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold">TradingVideoAcademy</span>
+                    </div>
+                    <p class="text-secondary-300 text-sm">
+                        Democratizing trading education through affordable, high-quality video lessons.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="lesson_catalog.html" class="text-secondary-300 hover:text-white transition-colors">Lessons</a></li>
+                        <li><a href="user_dashboard.html" class="text-secondary-300 hover:text-white transition-colors">Dashboard</a></li>
+                        <li><a href="payment_processing.html" class="text-secondary-300 hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="video_player.html" class="text-secondary-300 hover:text-white transition-colors">Video Player</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h3 class="font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-sm text-secondary-300">
+                        <li>support@tradingvideoacademy.com</li>
+                        <li>1-800-TRADING</li>
+                        <li>Available 24/7</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-secondary-700 mt-8 pt-8 text-center">
+                <p class="text-secondary-300 text-sm">
+                    © 2025 TradingVideoAcademy. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 id="previewTitle" class="text-xl font-bold text-text-primary">Lesson Preview</h3>
+                <button id="closePreview" class="text-secondary-400 hover:text-secondary-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="video-responsive mb-4">
+                    <video id="previewVideo" controls class="w-full h-full bg-black rounded-lg">
+                        <source src type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <p id="previewDescription" class="text-secondary-600 mb-4"></p>
+                <div class="flex justify-between items-center">
+                    <div class="text-sm text-secondary-500">
+                        Preview: First 2 minutes of the lesson
+                    </div>
+                    <button id="purchaseFromPreview" class="btn-accent">
+                        Purchase Bundle
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const difficultyFilter = document.getElementById('difficultyFilter');
+        const topicFilter = document.getElementById('topicFilter');
+        const statusFilter = document.getElementById('statusFilter');
+        const resetFilters = document.getElementById('resetFilters');
+        const lessonCards = document.querySelectorAll('.lesson-card');
+        const resultsCount = document.getElementById('resultsCount');
+
+        function filterLessons() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const difficulty = difficultyFilter.value;
+            const topic = topicFilter.value;
+            const status = statusFilter.value;
+            
+            let visibleCount = 0;
+            
+            lessonCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                const cardDifficulty = card.dataset.difficulty;
+                const cardTopic = card.dataset.topic;
+                const cardStatus = card.dataset.status;
+                
+                const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+                const matchesDifficulty = !difficulty || cardDifficulty === difficulty;
+                const matchesTopic = !topic || cardTopic === topic;
+                const matchesStatus = !status || cardStatus === status;
+                
+                if (matchesSearch && matchesDifficulty && matchesTopic && matchesStatus) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            resultsCount.textContent = `Showing ${visibleCount} lessons`;
+            updateActiveFilters();
+        }
+
+        function updateActiveFilters() {
+            const activeFilters = document.getElementById('activeFilters');
+            const filters = [];
+            
+            if (searchInput.value) filters.push({ type: 'search', value: searchInput.value });
+            if (difficultyFilter.value) filters.push({ type: 'difficulty', value: difficultyFilter.options[difficultyFilter.selectedIndex].text });
+            if (topicFilter.value) filters.push({ type: 'topic', value: topicFilter.options[topicFilter.selectedIndex].text });
+            if (statusFilter.value) filters.push({ type: 'status', value: statusFilter.options[statusFilter.selectedIndex].text });
+            
+            if (filters.length > 0) {
+                activeFilters.classList.remove('hidden');
+                activeFilters.innerHTML = filters.map(filter => 
+                    `<span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-primary-100 text-primary-700">
+                        ${filter.value}
+                        <button class="ml-2 text-primary-500 hover:text-primary-700" onclick="removeFilter('${filter.type}')">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </span>`
+                ).join('');
+            } else {
+                activeFilters.classList.add('hidden');
+            }
+        }
+
+        function removeFilter(type) {
+            switch(type) {
+                case 'search': searchInput.value = ''; break;
+                case 'difficulty': difficultyFilter.value = ''; break;
+                case 'topic': topicFilter.value = ''; break;
+                case 'status': statusFilter.value = ''; break;
+            }
+            filterLessons();
+        }
+
+        // Event listeners for filters
+        searchInput.addEventListener('input', filterLessons);
+        difficultyFilter.addEventListener('change', filterLessons);
+        topicFilter.addEventListener('change', filterLessons);
+        statusFilter.addEventListener('change', filterLessons);
+
+        resetFilters.addEventListener('click', function() {
+            searchInput.value = '';
+            difficultyFilter.value = '';
+            topicFilter.value = '';
+            statusFilter.value = '';
+            filterLessons();
+        });
+
+        // View toggle functionality
+        const gridView = document.getElementById('gridView');
+        const listView = document.getElementById('listView');
+        const lessonGrid = document.getElementById('lessonGrid');
+
+        gridView.addEventListener('click', function() {
+            lessonGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6';
+            gridView.className = 'p-2 rounded-md bg-white shadow-sm text-primary';
+            listView.className = 'p-2 rounded-md text-secondary-600 hover:text-primary';
+        });
+
+        listView.addEventListener('click', function() {
+            lessonGrid.className = 'space-y-4';
+            listView.className = 'p-2 rounded-md bg-white shadow-sm text-primary';
+            gridView.className = 'p-2 rounded-md text-secondary-600 hover:text-primary';
+        });
+
+        // Lesson functions
+        function watchLesson(lessonId) {
+            // Redirect to video player with lesson ID
+            window.location.href = `video_player.html?lesson=${lessonId}`;
+        }
+
+        function previewLesson(lessonId) {
+            const modal = document.getElementById('previewModal');
+            const title = document.getElementById('previewTitle');
+            const description = document.getElementById('previewDescription');
+            const video = document.getElementById('previewVideo');
+            
+            // Mock preview data
+            const previewData = {
+                8: {
+                    title: 'Lesson 8: Advanced Technical Analysis - Preview',
+                    description: 'Get a taste of advanced technical analysis concepts including RSI, MACD, and Bollinger Bands. This preview shows the first 2 minutes of the full 25-minute lesson.',
+                    videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
+                },
+                10: {
+                    title: 'Lesson 10: Swing Trading Strategies - Preview',
+                    description: 'Learn the fundamentals of swing trading in this preview. See how to identify swing trading opportunities and manage positions effectively.',
+                    videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
+                },
+                12: {
+                    title: 'Lesson 12: Trading Psychology Mastery - Preview',
+                    description: 'Discover the psychological aspects of trading in this preview. Learn how emotions affect trading decisions and strategies to maintain discipline.',
+                    videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
+                }
+            };
+            
+            const data = previewData[lessonId];
+            if (data) {
+                title.textContent = data.title;
+                description.textContent = data.description;
+                video.src = data.videoUrl;
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function purchaseBundle(bundleId, price) {
+            // Redirect to payment processing with bundle info
+            window.location.href = `payment_processing.html?bundle=${bundleId}&price=${price}`;
+        }
+
+        // Preview modal controls
+        document.getElementById('closePreview').addEventListener('click', function() {
+            const modal = document.getElementById('previewModal');
+            const video = document.getElementById('previewVideo');
+            modal.classList.add('hidden');
+            video.pause();
+            video.currentTime = 0;
+        });
+
+        document.getElementById('purchaseFromPreview').addEventListener('click', function() {
+            // Get current preview lesson and redirect to purchase
+            const title = document.getElementById('previewTitle').textContent;
+            const lessonMatch = title.match(/Lesson (\d+)/);
+            if (lessonMatch) {
+                const lessonId = parseInt(lessonMatch[1]);
+                let bundleId, price;
+                
+                if (lessonId === 8) {
+                    bundleId = '8-9';
+                    price = 5;
+                } else if (lessonId === 10) {
+                    bundleId = '10-11';
+                    price = 6;
+                } else if (lessonId === 12) {
+                    bundleId = '12-13';
+                    price = 6;
+                }
+                
+                if (bundleId) {
+                    purchaseBundle(bundleId, price);
+                }
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('previewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                document.getElementById('closePreview').click();
+            }
+        });
+
+        // Load more functionality
+        document.getElementById('loadMoreBtn').addEventListener('click', function() {
+            // Simulate loading more lessons
+            this.textContent = 'Loading...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.textContent = 'Load More Lessons';
+                this.disabled = false;
+                // In a real app, you would load more lesson cards here
+            }, 1500);
+        });
+
+        // Initialize filters on page load
+        filterLessons();
+    </script>
+</body>
+</html>
